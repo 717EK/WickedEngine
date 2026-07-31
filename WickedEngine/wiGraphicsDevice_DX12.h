@@ -465,6 +465,12 @@ namespace wi::graphics
 
 		ID3D12Resource* GetTextureInternalResource(const Texture* texture);
 		ID3D12CommandQueue* GetGraphicsCommandQueue();
+		// Returns the native DX12 command list for an active Wicked Engine command list.
+		// This is intended for tightly integrated third-party render backends, such as Dear ImGui.
+		ID3D12GraphicsCommandList* GetNativeGraphicsCommandList(CommandList cmd) const
+		{
+			return GetCommandList(cmd).GetGraphicsCommandList();
+		}
 
 		struct DescriptorHeapGPU
 		{
